@@ -48,10 +48,10 @@ resource "vsphere_virtual_machine" "Agility_Server1" {
         domain    = "localdomain"
       }
     network_interface {
-        ipv4_address = "130.175.93.243"
+        ipv4_address = "<ip_for_vm>"
       }
 
-      ipv4_gateway = "130.175.93.129"
+      ipv4_gateway = "ip_gateway"
     }
         }
   disk {
@@ -84,8 +84,8 @@ resource "vsphere_virtual_machine" "Agility_Server1" {
     "sudo firewall-cmd --reload",
     "sudo systemctl stop docker",
     "sudo systemctl start docker",
-    "sudo sshpass -p 'M3sh@dmin!' scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null smadmin@130.175.106.189:/home/smadmin/agility-images-11.1.0.tar.gz /home/smadmin/",
-    "sudo sshpass -p 'M3sh@dmin!' scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null smadmin@130.175.106.189:/home/smadmin/cloud-plugin-images-11.0.2.tar.gz /home/smadmin/",
+    "sudo sshpass -p 'M3sh@dmin!' scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null smadmin@<repo_ip>:/home/smadmin/agility-images-11.1.0.tar.gz /home/smadmin/",
+    "sudo sshpass -p 'M3sh@dmin!' scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null smadmin@<repo_ip>:/home/smadmin/cloud-plugin-images-11.0.2.tar.gz /home/smadmin/",
     "docker swarm init",
     "docker swarm join-token manager",
     "sudo docker swarm join-token --quiet manager > /home/smadmin/token",
